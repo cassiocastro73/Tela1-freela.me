@@ -1,9 +1,23 @@
 
 import { setStatusBarBackgroundColor } from 'expo-status-bar';
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, KeyboardAvoidingView, Text, View, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
 export default function App() {
+
+  const [email,setEmail] = useState('')
+  const [password,setPassword] = useState('')
+
+  function handleLogin(){
+    if (email === 'cassio'){
+      if (password==='123'){
+        console.log('logado com sucesso!')
+      }
+      else{console.log('Senha incorreta!')}
+    }
+    else {console.log('Email incorreto!')}
+  }
+
   return (
 
   <KeyboardAvoidingView style={styles.background}>
@@ -17,22 +31,24 @@ export default function App() {
     <View style={styles.container}>
     <TextInput
     style={styles.input}
-    placehoder='E-mail'
+    placeholder='E-mail'
     autoCorrect = {false} 
-    ///onChangeText={()=> {}}
+    onChangeText={setEmail}
+    value = {email}
     />
 
     <TextInput
     style={styles.input}
-    placehoder='Senha'
+    placeholder='Senha' secureTextEntry
     autoCorrect = {false} 
-    ///onChangeText={()=> {}}
+    onChangeText={setPassword}
+    value = {password}
     />
 
-    <TouchableOpacity style={styles.btnSubmit}>
+    <TouchableOpacity onPress = {()=>handleLogin()} style={styles.btnSubmit}>
       <Text style={styles.submitText}>Entrar</Text>
     </TouchableOpacity>
-
+  
     </View>
 
     </KeyboardAvoidingView>
